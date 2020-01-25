@@ -54,8 +54,14 @@ class ViewController: UIViewController, CNContactPickerDelegate {
     }
 
     @IBAction func withDefaultPickerUIDidChange(_ sender: Any) {
-        if #available(iOS 11.0, *) {
-            self.textField.withDefaultPickerUI = self.withDefaultPickerUISwitch.isOn
-        }
+        let vc = CountryCodePickerViewController(phoneNumberKit: PhoneNumberKit())
+        vc.delegate = self
+        
+    }
+}
+
+extension ViewController : CountryCodePickerDelegate {
+    func countryCodePickerViewControllerDidPickCountry(_ country: CountryCodePickerViewController.Country) {
+        
     }
 }
