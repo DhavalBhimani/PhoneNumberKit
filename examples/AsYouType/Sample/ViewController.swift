@@ -62,6 +62,5 @@ class ViewController: UIViewController, CNContactPickerDelegate {
 
 extension ViewController : CountryCodePickerDelegate {
     func countryCodePickerViewControllerDidPickCountry(_ country: CountryCodePickerViewController.Country) {
-        
     }
 }
