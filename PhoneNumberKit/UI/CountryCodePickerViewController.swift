@@ -88,7 +88,6 @@ public class CountryCodePickerViewController: UITableViewController {
 
     func commonInit() {
         let label = UILabel()
-        label.textColor = UIColor.label
         label.text = "Choose your country"
         navigationItem.titleView = label
         tableView.register(Cell.self, forCellReuseIdentifier: Cell.reuseIdentifier)
