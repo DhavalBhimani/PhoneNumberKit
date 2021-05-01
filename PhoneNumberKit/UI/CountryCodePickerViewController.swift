@@ -91,7 +91,6 @@ public class CountryCodePickerViewController: UITableViewController {
         label.textColor = UIColor.label
         label.text = "Choose your country"
         navigationItem.titleView = label
-
         tableView.register(Cell.self, forCellReuseIdentifier: Cell.reuseIdentifier)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -149,11 +148,11 @@ public class CountryCodePickerViewController: UITableViewController {
         if isFiltering {
             return nil
         } else if section == 0, hasCurrent {
-            return "Current"
+            return NSLocalizedString("PhoneNumberKit.CountryCodePicker.Current", value: "Current", comment: "Name of \"Current\" section")
         } else if section == 0, !hasCurrent, hasCommon {
-            return "Common"
+            return NSLocalizedString("PhoneNumberKit.CountryCodePicker.Common", value: "Common", comment: "Name of \"Common\" section")
         } else if section == 1, hasCurrent, hasCommon {
-            return "Common"
+            return NSLocalizedString("PhoneNumberKit.CountryCodePicker.Common", value: "Common", comment: "Name of \"Common\" section")
         }
         return countries[section].first?.name.first.map(String.init)
     }
@@ -217,7 +216,7 @@ public extension CountryCodePickerViewController {
         public var name: String
         public var prefix: String
 
-        init?(for countryCode: String, with phoneNumberKit: PhoneNumberKit) {
+        public init?(for countryCode: String, with phoneNumberKit: PhoneNumberKit) {
             let flagBase = UnicodeScalar("🇦").value - UnicodeScalar("A").value
             guard
                 let name = (Locale.current as NSLocale).localizedString(forCountryCode: countryCode),

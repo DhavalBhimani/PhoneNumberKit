@@ -23,6 +23,10 @@ class ViewController: UIViewController, CNContactPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearResults()
+        
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = .systemBackground
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +54,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
 
     func parseNumber(_ number: String) {
         do {
-            let phoneNumber = try phoneNumberKit.parse(number)
+            let phoneNumber = try phoneNumberKit.parse(number, ignoreType: true)
             self.parsedNumberLabel.text = self.phoneNumberKit.format(phoneNumber, toType: .international)
             self.parsedCountryCodeLabel.text = String(phoneNumber.countryCode)
             if let regionCode = phoneNumberKit.mainCountry(forCode: phoneNumber.countryCode) {
